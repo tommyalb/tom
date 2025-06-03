@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calorie Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Overview</h2>
+      <div class="card">
+        <p><strong>Calories Intake:</strong> <span id="calories">0</span>/<span id="calorieLimit">0</span> kcal</p>
+        <p class="time" id="calorie-time"></p>
+      </div>
+      <div class="card">
+        <p><strong>Water Intake:</strong> <span id="water">0</span>/<span id="waterLimit">0</span> ml</p>
+        <p class="time" id="water-time"></p>
+      </div>
+      <div class="card">
+        <h3>Calorie Plan Status</h3>
+        <table>
+          <thead>
+            <tr><th>Plan</th><th>Calories</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Maintenance</td><td id="maintCalories">0</td></tr>
+            <tr><td>Mild Deficit</td><td id="mildCalories">0</td></tr>
+            <tr><td>Aggressive Deficit</td><td id="aggrCalories">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+      <!-- Top Bar -->
+      <div class="top-bar">
+        <div class="user-info">
+          <h1>Hello, <span id="userName">--</span>!</h1>
+          <p>
+            Age: <span id="userAge">0</span>, Height: <span id="userHeight">0</span>cm,
+            Weight: <span id="userWeight">0</span>kg, Gender: <span id="userGender">--</span>
+          </p>
+        </div>
+        <div class="top-right">
+          <div class="profile-pic">
+            <input type="file" id="upload" accept="image/*" hidden />
+            <img src="https://via.placeholder.com/80" alt="Profile Picture" id="profileImage" />
+            <div class="overlay" onclick="document.getElementById('upload').click()">✏️</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="buttons">
+        <div class="btn-container" onclick="showSection('input')">
+          <div class="btn-initial">D</div>
+          <div class="btn-full">Data Input</div>
+        </div>
+        <div class="btn-container" onclick="showSection('history')">
+          <div class="btn-initial">H</div>
+          <div class="btn-full">History</div>
+        </div>
+        <div class="btn-container" onclick="showSection('plan')">
+          <div class="btn-initial">P</div>
+          <div class="btn-full">Plan Calculator</div>
+        </div>
+      </div>
+
+      <!-- Sections -->
+      <div id="input" class="section hidden">
+        <h2>Input Data</h2>
+        <label>Calories Intake (kcal): <input type="number" id="inputCalories" /></label>
+        <label>Water Intake (ml): <input type="number" id="inputWater" /></label>
+        <button id="submitInputBtn" type="button">Submit</button>
+      </div>
+
+      <div id="history" class="section hidden">
+        <h2>History</h2>
+        <ul id="historyList"></ul>
+        <button id="deleteSelectedBtn" type="button">Delete Selected</button>
+      </div>
+
+      <div id="plan" class="section hidden">
+        <h2>Calorie Deficit Calculator</h2>
+        <label>Name: <input type="text" id="planName" placeholder="Your name" /></label>
+        <label>Age: <input type="number" id="planAge" /></label>
+        <label>Gender:
+          <select id="planGender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </label>
+        <label>Height (cm): <input type="number" id="planHeight" /></label>
+        <label>Weight (kg): <input type="number" id="planWeight" /></label>
+        <label>Activity Level:
+          <select id="planActivity">
+            <option value="1.2">Sedentary</option>
+            <option value="1.375">Lightly Active</option>
+            <option value="1.55">Moderately Active</option>
+            <option value="1.725">Very Active</option>
+          </select>
+        </label>
+        <label>Goal:
+          <select id="planGoal">
+            <option value="maintenance">Maintenance</option>
+            <option value="mild">Mild Deficit</option>
+            <option value="aggressive">Aggressive Deficit</option>
+          </select>
+        </label>
+        <button id="calculateBtn" type="button">Calculate</button>
+        <div id="planResult"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
